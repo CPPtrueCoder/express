@@ -3,9 +3,10 @@ const express = require ('express'),
 	exphbs = require ('express-handlebars'),
 	homeRouter = require ('./routes/home'),
 	addRouter = require ('./routes/add'),
+	cardRoutes=require('./routes/card'),
 	courseRouter = require ('./routes/courses');
 
-const app = express ()
+const app = express ();
 
 const hbs = exphbs.create ({
 	defaultLayout: 'main',
@@ -20,6 +21,7 @@ app.use(express.urlencoded({extended:true}));
 app.use ('/',homeRouter);
 app.use('/add',addRouter);
 app.use('/courses', courseRouter);
+app.use('/card',cardRoutes);
 
 
 
