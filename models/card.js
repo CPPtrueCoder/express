@@ -41,6 +41,30 @@ return new Promise((resolve , reject)=>{
 	})
 })
 }
+
+static async remove(id){
+	const card =await Card.fetch();
+	const idx = card.courses.findIndex(c=>c.id===id);
+	const course=card.courses[idx];
+	if (course.count===1){
+		//Deleting
+		card.courses=card.courses.filter(c=>c.id!==id)
+	}else{
+		//count deg
+		course.count--;
+	}
+	card.price-=course.price;
+	return new Promise((resolve,reject)=>{
+		fs.writeFile(p,JSON.stringify(card), err=>{
+			if(err){
+				reject(err);
+			}else{
+				resolve(card);
+			}
+		})
+	})
+	
+}
 }
 
 
