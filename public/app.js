@@ -34,7 +34,7 @@ if ($card) {
 						$card.querySelector('.price').textContent=toCurrency( card.price);
 					}
 					else {
-						#card.innerHTML = '<p>Card is empty</p>'
+						$card.innerHTML = '<p>Card is empty</p>'
 					}
 				})
 		}
