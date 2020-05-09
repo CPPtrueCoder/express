@@ -5,7 +5,8 @@ const express = require ('express'),
 	homeRouter = require ('./routes/home'),
 	addRouter = require ('./routes/add'),
 	cardRoutes = require ('./routes/card'),
-	courseRouter = require ('./routes/courses');
+	courseRouter = require ('./routes/courses'),
+	User=require('models/user');
 
 const app = express ();
 const password = '2WhID0dZ6zLldkgQ';
@@ -36,6 +37,15 @@ async function start() {
 			useFindAndModify:false
 			}
 		);
+		const candidate = await User.findOne();
+		if(!candidate) {
+			const user = new User ({
+				email: 'andierodin@gmail.com',
+				name: 'Andrey',
+				cart: {items: []}
+			});
+			await user.save ();
+		}
 		app.listen (PORT, () => {
 			console.log (`Server is running on port ${PORT}`)
 		});
